@@ -78,6 +78,16 @@ asoft:hasFPS rdfs:label "has FPS"@en ;
              rdf:type owl:AnnotationProperty ;
              rdfs:subPropertyOf skos:note .
 
+###  https://github.com/cdcc-jpg/ontologies#hasMaterial
+asoft:hasMaterial rdfs:label "has material"@en ;
+                  rdf:type owl:AnnotationProperty ;
+                  rdfs:subPropertyOf skos:note .
+
+###  https://github.com/cdcc-jpg/ontologies#hasMaxWeight
+asoft:hasMaxWeight rdfs:label "has max weight"@en ;
+                   rdf:type owl:AnnotationProperty ;
+                   rdfs:subPropertyOf skos:note .
+
 ###  https://github.com/cdcc-jpg/ontologies#hasPhases
 asoft:hasPhases rdfs:label "has phases"@en ;
                 rdf:type owl:AnnotationProperty ;
@@ -108,6 +118,10 @@ asoft:usesGear rdfs:label "uses gear"@en ;
                rdf:type owl:AnnotationProperty ;
                rdfs:subPropertyOf skos:related .
 
+asoft:isLegalForPlay rdfs:label "is legal for play"@en ;
+                     rdf:type owl:AnnotationProperty ;
+                     rdfs:subPropertyOf skos:note .
+
 #################################################################
 #    Datatypes
 #################################################################
@@ -121,17 +135,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.w3.org/2004/02/skos/core#memberList
 skos:memberList rdf:type owl:ObjectProperty .
-
-#################################################################
-#    Data properties
-#################################################################
-
-###  http://www.co-ode.org/ontologies/ont.owl#maxWeight
-<http://www.co-ode.org/ontologies/ont.owl#maxWeight> rdf:type owl:DatatypeProperty .
-
-###  http://www.co-ode.org/ontologies/ont.owl#weight
-<http://www.co-ode.org/ontologies/ont.owl#weight> rdf:type owl:DatatypeProperty ;
-                                                  rdfs:range xsd:decimal .
 
 #################################################################
 #    Classes
@@ -150,6 +153,7 @@ skos:OrderedCollection rdf:type owl:Class .
 #    Individuals
 #################################################################
 
+
 ###  https://github.com/cdcc-jpg/ontologies#AirsoftAgent
 asoft:AirsoftAgent rdf:type owl:NamedIndividual ,
                             skos:Concept ;
@@ -165,7 +169,37 @@ asoft:AirsoftBB rdf:type owl:NamedIndividual ,
                 skos:definition "Spherical plastic or biodegradable projectiles fired by replicas."@en ;
                 skos:inScheme asoft:AirsoftGame ;
                 skos:prefLabel "Airsoft BB"@en ;
-                rdfs:Datatype "0.60"^^xsd:decimal .
+                asoft:hasMaxWeight "0.60"^^xsd:decimal ;
+                asoft:isLegalForPlay "true" .
+
+asoft:MetalBB rdf:type owl:NamedIndividual ,
+                      skos:Concept ;
+             skos:broader asoft:AirsoftBB ;
+             skos:definition "A type of airsoft BB that is made of metal."@en ;
+             skos:inScheme asoft:AirsoftGame ;
+             skos:prefLabel "Metal BB"@en ;
+             asoft:hasMaterial "Steel" ;
+             asoft:isLegalForPlay "false" .
+ 
+###  https://github.com/cdcc-jpg/ontologies#BioBB
+asoft:BioBB rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            skos:broader asoft:AirsoftBB ;
+            skos:definition "A type of airsoft BB that is biodegradable."@en ;
+            skos:inScheme asoft:AirsoftGame ;
+            skos:prefLabel "Biodegradable BB"@en ;
+            asoft:hasMaterial "PLA", "Polylactic Acid" ;
+            asoft:isLegalForPlay "true" .
+
+###  https://github.com/cdcc-jpg/ontologies#NonBioBB
+asoft:NonBioBB rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+           skos:broader asoft:AirsoftBB ;
+           skos:definition "A type of airsoft BB that is not biodegradable."@en ;
+           skos:inScheme asoft:AirsoftGame ;
+           skos:prefLabel "Non-biodegradable BB"@en ;
+           asoft:hasMaterial "ABS", "Acrylonitrile Butadiene Styrene" ;
+           asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#AirsoftClothing
 asoft:AirsoftClothing rdf:type owl:NamedIndividual ,
@@ -174,7 +208,8 @@ asoft:AirsoftClothing rdf:type owl:NamedIndividual ,
                       skos:broader asoft:AirsoftGear ;
                       skos:definition "A piece of gear worn on the body by the player."@en ;
                       skos:inScheme asoft:AirsoftGame ;
-                      skos:prefLabel "Airsoft vest"@en .
+                      skos:prefLabel "Airsoft vest"@en ;
+                      asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#AirsoftConsumable
 asoft:AirsoftConsumable rdf:type owl:NamedIndividual ,
@@ -182,7 +217,8 @@ asoft:AirsoftConsumable rdf:type owl:NamedIndividual ,
                         skos:broader asoft:AirsoftGear ;
                         skos:definition "A piece of consumable that allows physical interaction between players."@en ;
                         skos:inScheme asoft:AirsoftGame ;
-                        skos:prefLabel "Airsoft consumable"@en .
+                        skos:prefLabel "Airsoft consumable"@en ;
+                        asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#AirsoftField
 asoft:AirsoftField rdf:type owl:NamedIndividual ,
@@ -202,7 +238,8 @@ asoft:AirsoftGear rdf:type owl:NamedIndividual ,
                   skos:broadMatch schema:Product ;
                   skos:definition "A type of object specifically used to play airsoft."@en ;
                   skos:inScheme asoft:AirsoftGame ;
-                  skos:prefLabel "Airsoft gear"@en .
+                  skos:prefLabel "Airsoft gear"@en ;
+                  asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#AirsoftManager
 asoft:AirsoftManager rdf:type owl:NamedIndividual ,
@@ -246,7 +283,8 @@ asoft:AirsoftReplica rdf:type owl:NamedIndividual ,
                      skos:broader asoft:AirsoftGear ;
                      skos:definition "A piece of gear that propels 0.6 polymer ballbearings (BBs)."@en ;
                      skos:inScheme asoft:AirsoftGame ;
-                     skos:prefLabel "Airsoft replica"@en .
+                     skos:prefLabel "Airsoft replica"@en ;
+                     asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#AirsoftRule
 asoft:AirsoftRule rdf:type owl:NamedIndividual ,
@@ -277,7 +315,8 @@ asoft:ElectricReplica rdf:type owl:NamedIndividual ,
                       skos:broader asoft:AirsoftReplica ;
                       skos:definition "A type of airsoft replica that uses an electric motor that compresses ambient air to propel BBs."@en ;
                       skos:inScheme asoft:AirsoftGame ;
-                      skos:prefLabel "Electric replica"@en .
+                      skos:prefLabel "Electric replica"@en ;
+                      asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#EyeProtection
 asoft:EyeProtection rdf:type owl:NamedIndividual ,
@@ -285,7 +324,8 @@ asoft:EyeProtection rdf:type owl:NamedIndividual ,
                     skos:broader asoft:AirsoftClothing ;
                     skos:definition "Mandatory safety glasses, goggles, or masks worn to protect the eyes from BBs."@en ;
                     skos:inScheme asoft:AirsoftGame ;
-                    skos:prefLabel "Eye Protection"@en .
+                    skos:prefLabel "Eye Protection"@en ;
+                    asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#GameEnd
 asoft:GameEnd rdf:type owl:NamedIndividual ,
@@ -307,7 +347,8 @@ asoft:GbbrReplica rdf:type owl:NamedIndividual ,
                   skos:broader asoft:AirsoftReplica ;
                   skos:definition "A type of airsoft replica that uses compressed gas in magazines to propel BBs."@en ;
                   skos:inScheme asoft:AirsoftGame ;
-                  skos:prefLabel "GBBR replica"@en .
+                  skos:prefLabel "GBBR replica"@en ;
+                  asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#HpaReplica
 asoft:HpaReplica rdf:type owl:NamedIndividual ,
@@ -315,7 +356,8 @@ asoft:HpaReplica rdf:type owl:NamedIndividual ,
                  skos:broader asoft:AirsoftReplica ;
                  skos:definition "A type of airsoft replica that uses a compress air tank to propel BBs."@en ;
                  skos:inScheme asoft:AirsoftGame ;
-                 skos:prefLabel "HPA replica"@en .
+                 skos:prefLabel "HPA replica"@en ;
+                 asoft:isLegalForPlay "true" .
 
 ###  https://github.com/cdcc-jpg/ontologies#IndoorAirsoftField
 asoft:IndoorAirsoftField rdf:type owl:NamedIndividual ,
