@@ -1,0 +1,15 @@
+@prefix asoft: <https://github.com/cdcc-jpg/sportsontology/airsoft-ao#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+asoft:AirsoftReplica a sh:NodeShape ;
+    sh:targetClass asoft:AirsoftReplica ;
+    sh:property [
+        sh:path asoft:hasPowerLimit ;
+        sh:maxInclusive 1.20 ;
+        sh:datatype xsd:decimal ;
+        sh:name "Power Limit CHECK" ;
+        sh:description "No replica can exceed the 1.2 Joule safety limit." ;
+        sh:message "Power Limit VIOLATION detected: Replica should not exceed the 1.2 Joule maximum output." ;
+    ] .
