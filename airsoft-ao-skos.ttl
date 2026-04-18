@@ -164,7 +164,8 @@ asoft:AirsoftBB rdf:type owl:NamedIndividual ,
                 skos:broader asoft:AirsoftConsumable ;
                 skos:definition "Spherical plastic or biodegradable projectiles fired by replicas."@en ;
                 skos:inScheme asoft:AirsoftGame ;
-                skos:prefLabel "Airsoft BB"@en .
+                skos:prefLabel "Airsoft BB"@en ;
+                rdfs:Datatype "0.60"^^xsd:decimal .
 
 ###  https://github.com/cdcc-jpg/ontologies#AirsoftClothing
 asoft:AirsoftClothing rdf:type owl:NamedIndividual ,

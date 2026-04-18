@@ -5,7 +5,6 @@
 @prefix schema: <http://schema.org/> .
 @prefix foaf:   <http://xmlns.com/foaf/0.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix asoft: <https://github.com/cdcc-jpg/ontologies#> .
 @base <https://github.com/cdcc-jpg/ontologies> .
@@ -100,7 +99,20 @@ asoft:AirsoftConsumable a owl:Class ;
 asoft:AirsoftBB a owl:Class ;
     rdfs:label "Airsoft BB"@en ;
     rdfs:comment "Spherical plastic or biodegradable projectiles fired by replicas."@en ;
-    rdfs:subClassOf asoft:AirsoftConsumable .
+    rdfs:subClassOf asoft:AirsoftConsumable ,
+                    [ a owl:Restriction ;
+                      owl:onProperty asoft:hasWeight ;
+                      owl:hasValue "0.6"^^xsd:decimal
+                    ] .
+
+asoft:AirsoftGrenade a owl:Class ;
+    rdfs:label "Airsoft grenade"@en ;
+    rdfs:comment "A type of airsoft consumable that simulates the effect of a real grenade."@en ;
+    rdfs:subClassOf asoft:AirsoftConsumable ,
+                    [ a owl:Restriction ;
+                        owl:onProperty asoft:hasDecibel ;
+                        owl:hasValue "120"^^xsd:decimal 
+                    ] .
 
 # SPECIFIC CONCEPTS (AirsoftRule)
 
@@ -201,6 +213,12 @@ asoft:belongsToTeam a owl:ObjectProperty ;
     rdfs:range asoft:AirsoftTeam .
 
 # GENERAL DATA PROPERTIES
+
+asoft:hasWeight a owl:DatatypeProperty ;
+    rdfs:label "has weight"@en ;
+    rdfs:comment "The physical weight of an object, usually measured in grams for airsoft."@en ;
+    rdfs:domain asoft:AirsoftGear ;
+    rdfs:range xsd:decimal .
 
 asoft:hasPowerLimit a owl:DatatypeProperty ;
     rdfs:label "has power limit"@en ;
