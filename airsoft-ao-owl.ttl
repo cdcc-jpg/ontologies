@@ -7,7 +7,8 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
-@prefix asoft: <https://github.com/cdcc-jpg/sportsontology/airsoft-ao#> .
+@prefix asoft: <https://github.com/cdcc-jpg/ontologies#> .
+@base <https://github.com/cdcc-jpg/ontologies> .
 
 # ONTOLOGY METADATA
 asoft:AirsoftOntology rdf:type owl:Ontology ;
@@ -42,24 +43,24 @@ asoft:AirsoftAgent a owl:Class ;
 
 # GENERAL PROCESSES
 
-asoft:StandardAirsoftSchedule a owl:Class, bfo:0000015 ;
+asoft:StandardAirsoftSchedule a owl:Class, obo:BFO_0000015 ;
     rdfs:comment "The ordered sequence of a standard game day." ;
     asoft:hasPhases ( asoft:Briefing asoft:GameStart asoft:LunchBreak asoft:GameEnd ) .
 
 asoft:Briefing a owl:Class ;
-    rdfs:subClassOf bfo:0000015 ;
+    rdfs:subClassOf obo:BFO_0000015 ;
     rdfs:label "Briefing"@en .
 
 asoft:GameStart a owl:Class ;
-    rdfs:subClassOf bfo:0000015 ;
+    rdfs:subClassOf obo:BFO_0000015 ;
     rdfs:label "Game Start"@en .
 
 asoft:LunchBreak a owl:Class ;
-    rdfs:subClassOf bfo:0000015 ;
+    rdfs:subClassOf obo:BFO_0000015 ;
     rdfs:label "Lunch Break"@en .
 
 asoft:GameEnd a owl:Class ;
-    rdfs:subClassOf bfo:0000015 ;
+    rdfs:subClassOf obo:BFO_0000015 ;
     rdfs:label "Game End"@en .
 
 # SPECIFIC CONCEPTS (AirsoftField)
